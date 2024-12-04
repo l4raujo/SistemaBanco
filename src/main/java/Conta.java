@@ -44,6 +44,26 @@ public class Conta {
         }
     }
 
+    public void Emprestimo(double valor_emprestimo){
+        if(valor_emprestimo >= saldo){
+            System.out.println("Emprestimo não pode ser realizado");
+        }else{
+            saldo = saldo + valor_emprestimo;
+            System.out.println("Emprestimo realizado com sucesso!");
+            System.out.println("Seu saldo agora é de: " + saldo);
+        }
+    }
+
+    public void Boleto(double valor_boleto){
+        if(valor_boleto >= saldo){
+            System.out.println("Saldo Insuficiente!");
+        }else{
+            saldo = saldo - valor_boleto;
+            System.out.println("Pagamento realizado!");
+            System.out.println("Seu saldo agora é de: " + saldo);
+        }
+    }
+
     public void Iniciar() {
         int opcao;
         do {
@@ -59,12 +79,16 @@ public class Conta {
         System.out.println("1 - Ver Saldo");
         System.out.println("2 - Sacar");
         System.out.println("3 - Depositar");
-        System.out.println("4 - Finalizar");
+        System.out.println("4 - Empréstimo");
+        System.out.println("5 - Pagar Boleto");
+        System.out.println("6 - Finalizar");
     }
 
     public void Escolher_funcao(int opcao){
         double saque;
         double deposito;
+        double emprestimo;
+        double boleto;
 
         switch (opcao){
             case 1:
@@ -81,11 +105,19 @@ public class Conta {
                 Deposito(deposito);
                 break;
             case 4:
+                System.out.println("Digite o valor para empréstimo: ");
+                emprestimo = entrada.nextDouble();
+                Emprestimo(emprestimo);
+            case 5:
+                System.out.println("Digite o valor do boleto: ");
+                boleto = entrada.nextDouble();
+                Boleto(boleto);
+                break;
+            case 6:
                 System.out.println("Operação Finalizada!");
                 break;
             default:
                 System.out.println("Opção inválida!");
         }
     }
-
 }
